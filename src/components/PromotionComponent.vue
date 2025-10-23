@@ -15,7 +15,7 @@
         <h1 class="w-[250px] font-Quicksand font-bold text-xl lg:text-2xl leading-[30px]">
           {{ item.title }}
         </h1>
-        <ButtonCategory />
+        <ButtonCategory :text="item.button.text" :bg-color="item.button.bgColor" />
       </div>
       <div
         :class="[
@@ -47,12 +47,20 @@ const promotionData = ref([
     title: 'Everyday Fresh & Clean with Our Products',
     image: '/Image/Promotion/Vegetable2.png',
     backgroundColor: '#F0E8D5',
+    button: {
+      text: 'Shop Now',
+      bgColor: '#3BB77E',
+    },
   },
   {
     id: 2,
     title: 'Make your Breakfast Healthy and Easy',
     image: '/Image/Promotion/Stawberry.png',
     backgroundColor: '#F3E8E8',
+    button: {
+      text: 'Shop Now',
+      bgColor: '#3BB77E',
+    },
   },
   {
     id: 3,
@@ -60,6 +68,10 @@ const promotionData = ref([
     description: 'Enjoy free shipping on orders over $100.',
     image: '/Image/Promotion/Vegetable1.png',
     backgroundColor: '#E7EAF3',
+    button: {
+      text: 'Shop Now',
+      bgColor: '#FDC040',
+    },
   },
 ])
 </script>
