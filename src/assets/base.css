@@ -75,12 +75,17 @@ body {
     Oxygen,
     Ubuntu,
     Cantarell,
+    'Quicksand',
     'Fira Sans',
     'Droid Sans',
-    'Helvetica Neue',
-    sans-serif;
+    'Helvetica Neue';
   font-size: 15px;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Utility to match class name used in templates */
+.font-Quicksand {
+  font-family: 'Quicksand', sans-serif;
 }

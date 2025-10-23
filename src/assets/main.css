@@ -1,9 +1,8 @@
-@import './base.css';
+@import 'tailwindcss';
+@import 'primeicons/primeicons.css';
+/* @import './base.css'; */
 body {
-  background-color: white;
-}
-
-.header {
-  color: black;
-  text-align: center;
+  margin: 0;
+  padding: 0;
+  font-family: Quicksand, sans-serif;
 }
