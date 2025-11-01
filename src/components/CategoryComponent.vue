@@ -7,7 +7,7 @@
       class="md:w-[168px] lg:w-[145px] h-[200px] xl:w-[122px] lg:h-[170px] xl:h-[177px] flex flex-col items-center justify-between rounded-2xl p-1"
     >
       <img
-        :src="`http://localhost:3000/${item.image}`"
+        :src="`${API_BASE_URL}${item.image}`"
         :alt="item.name"
         class="w-full h-[140px] lg:h-[120px] object-contain"
       />
@@ -35,7 +35,7 @@ interface Category {
 const category = ref<Category[]>([])
 const getCategory = async () => {
   try {
-    const response = await axios.get(`${API_BASE_URL}/categories`)
+    const response = await axios.get(`${API_BASE_URL}api/categories`)
     category.value = response.data
     console.log(category.value)
   } catch (error) {

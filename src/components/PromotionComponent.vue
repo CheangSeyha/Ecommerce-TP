@@ -25,7 +25,7 @@
         ]"
       >
         <img
-          :src="`http://localhost:3000/${item.image}`"
+          :src="`${API_BASE_URL}${item.image}`"
           :alt="item.title"
           :class="[
             'object-contain pointer-events-none',
@@ -58,7 +58,7 @@ const API_BASE_URL = import.meta.env.VITE_API_BASE_URL
 
 const getPromotion = async () => {
   try {
-    const response = await axios.get(`${API_BASE_URL}/promotions`)
+    const response = await axios.get(`${API_BASE_URL}api/promotions`)
     promotion.value = response.data
     console.log(promotion.value)
   } catch (error) {
