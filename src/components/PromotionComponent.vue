@@ -15,7 +15,11 @@
         <h1 class="w-[250px] font-Quicksand font-bold text-xl lg:text-2xl leading-[30px]">
           {{ item.title }}
         </h1>
-        <ButtonCategory :text="item.button.text" :bg-color="item.button.bgColor" />
+        <ButtonCategory
+          :text="item.button.text"
+          :bg-color="item.button.bgColor"
+          @click="shopNow(item)"
+        />
       </div>
       <div
         :class="[
@@ -27,7 +31,7 @@
           :src="item.image"
           alt=""
           :class="[
-            'object-contain',
+            'object-contain pointer-events-none',
             index === 1
               ? 'w-[180px] h-[250px] lg:w-[200px] lg:h-[250px] xl:w-[180px] xl:h-[250px]'
               : 'xl:w-[400px] xl:h-[300px]',
@@ -41,6 +45,11 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import ButtonCategory from './ButtonCategory.vue'
+
+const shopNow = (item: { title: string }) => {
+  alert("Let's shop now! " + item.title)
+}
+
 const promotionData = ref([
   {
     id: 1,
