@@ -5,7 +5,7 @@ import CategoryComponent from './components/CategoryComponent.vue'
 
 <template>
   <h1 class="text-3xl font-bold text-center mt-10">Ecommerce TP</h1>
-  <main class="mt-20">
+  <main class="mt-10">
     <CategoryComponent />
     <PromotionComponent />
   </main>
