@@ -22,6 +22,7 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
 import axios from 'axios'
+import { useProductStore } from '@/stores/store'
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL
 interface Category {
@@ -42,7 +43,12 @@ const getCategory = async () => {
     console.log(error)
   }
 }
-onMounted(() => {
+const store = useProductStore()
+onMounted(async () => {
+  await store.fetchData()
+
+  const categories = store.getProductsByCategory(1)
+  console.log('here is the categories: ' + categories)
   getCategory()
 })
 </script>
