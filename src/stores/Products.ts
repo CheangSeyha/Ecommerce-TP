@@ -1,11 +1,7 @@
 import axios from 'axios'
 import { defineStore } from 'pinia'
 
-interface Group {
-  name: string
-}
-
-interface Categories {
+export interface Categories {
   id: number
   name: string
   productCount: number
@@ -14,7 +10,8 @@ interface Categories {
   groupName: string
 }
 
-interface Promotions {
+export interface Promotions {
+  id: number
   title: string
   buttonColor: string
   url: string
@@ -22,45 +19,57 @@ interface Promotions {
   image: string
 }
 
-interface Products {
+export interface Products {
   name: string
-  price: number
-  color: string
+  rating: number
+  size: string
   image: string
-  groupName: string
-  countSold: number
+  price: number
+  promotionAsPercentage: number
   categoryId: number
+  instock: number
+  countSold: number
+  group: string
 }
 
-// ----- Store -----
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL
+
 export const useProductStore = defineStore('products', {
   state: () => ({
-    groups: [] as Group[],
+    groups: [] as string[],
     promotions: [] as Promotions[],
     categories: [] as Categories[],
     products: [] as Products[],
   }),
 
   getters: {
+    getGroup: (state) => {
+      return state.groups
+    },
+    getAllProducts: (state) => {
+      return state.products
+    },
+
+    getAllPromotions: (state) => {
+      return state.promotions
+    },
+
+    getAllCategories: (state) => {
+      return state.categories
+    },
     getCategoriesByGroup: (state) => {
       return (groupName: string): Categories[] => {
-        const group = state.groups.find((group) => group.name === groupName)
-        if (!group) return []
         return state.categories.filter((category) => category.groupName === groupName)
       }
     },
     getProductsByGroup: (state) => {
       return (groupName: string): Products[] => {
-        const group = state.groups.find((group) => group.name === groupName)
-        if (!group) return []
-        return state.products.filter((product) => product.groupName === groupName)
+        return state.products.filter((product) => product.group === groupName)
       }
     },
 
     getProductsByCategory: (state) => {
       return (id: number): Products[] => {
-        const category = state.categories.find((category) => category.id === id)
-        if (!category) return []
         return state.products.filter((product) => product.categoryId === id)
       }
     },
@@ -72,16 +81,17 @@ export const useProductStore = defineStore('products', {
   actions: {
     async fetchData() {
       try {
-        const [groupsResponse, categoriesResponse, productsResponse] = await Promise.all([
-          axios.get('http://localhost:3000/api/groups'),
-          axios.get('http://localhost:3000/api/categories'),
-          axios.get('http://localhost:3000/api/promotions'),
-          axios.get('http://localhost:3000/api/products'),
+        const [groups, categories, products, promotions] = await Promise.all([
+          axios.get(`${API_BASE_URL}api/groups`),
+          axios.get(`${API_BASE_URL}api/categories`),
+          axios.get(`${API_BASE_URL}api/products`),
+          axios.get(`${API_BASE_URL}api/promotions`),
         ])
 
-        this.groups = groupsResponse.data
-        this.categories = categoriesResponse.data
-        this.promotions = productsResponse.data
+        this.groups = groups.data
+        this.categories = categories.data
+        this.products = products.data
+        this.promotions = promotions.data
       } catch (error) {
         console.log(error)
       }
