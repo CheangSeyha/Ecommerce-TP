@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { defineEmits } from 'vue'
-
 const props = defineProps<{
   categories: string
   groupName: string[] // e.g., ['All', 'Milks & Dairies', ...]
