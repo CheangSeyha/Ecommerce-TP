@@ -1,5 +1,8 @@
 @import 'tailwindcss';
 @import 'primeicons/primeicons.css';
+@import 'flowbite/src/themes/default';
+@plugin "flowbite/plugin";
+
 /* @import './base.css'; */
 body {
   margin: 0;

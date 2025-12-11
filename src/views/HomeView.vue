@@ -5,9 +5,11 @@ import CategoryComponent from '../components/CategoryComponent.vue'
 import MenuComponent from '../components/MenuComponent.vue'
 import ProductList from '../components/ProductList.vue'
 import { useProductStore } from '../stores/Products'
-import NavBar from '../components/ NavBar.vue'
-import FooterE from '../components/FooterE.vue'
+import NavBar from '@/components/layout/ NavBar.vue'
+import FooterE from '@/components/layout/FooterE.vue'
+import MenuCategories from '../components/MenuCategories.vue'
 import { type Products, type Categories, type Promotions } from '../stores/Products'
+import HeroComponent from '@/components/HeroComponent.vue'
 
 const productStore = useProductStore()
 const selectProductByGroup = ref<string>('All')
@@ -54,11 +56,17 @@ onMounted(async () => {
 </script>
 
 <template>
-  <header class="fixed top-0 left-0 w-full z-50">
+  <header class="fixed top-0 left-0 w-full z-100">
     <NavBar />
   </header>
   <main class="flex flex-col mt-10">
-    <section class="flex flex-row justify-between items-center mt-10 mb-5">
+    <section>
+      <MenuCategories />
+    </section>
+    <section>
+      <HeroComponent />
+    </section>
+    <section class="flex flex-row justify-between items-center mb-5">
       <MenuComponent
         categories="Feature Categories"
         :groupName="groups"
